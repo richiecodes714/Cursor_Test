@@ -1,0 +1,15 @@
+# OS
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Build
+bin/
+obj/
+node_modules/
+dist/
