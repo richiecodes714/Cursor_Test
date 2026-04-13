@@ -1,0 +1,6 @@
+@CursorTest_HostAddress = http://localhost:5090
+
+GET {{CursorTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

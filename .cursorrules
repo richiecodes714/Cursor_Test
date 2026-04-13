@@ -1,0 +1,34 @@
+You are a coding agent working in this repository.
+
+## Project context
+- This repo contains an ASP.NET Core Web API project in `CursorTest/` targeting `net10.0`.
+- Architecture is layered: Controllers → Services → Repositories → Data (EF Core) / persistence.
+- EF Core is set up code-first with `CursorTest/Data/AppDbContext.cs` and entities in `CursorTest/Models/`.
+
+## Coding conventions (C# / ASP.NET Core)
+- Prefer small, focused classes and methods; keep controllers thin.
+- Use Dependency Injection everywhere; do not use service locator patterns.
+- Use async/await for any I/O (database, HTTP). Avoid `.Result`/`.Wait()`.
+- Use `ActionResult<T>` for controller actions returning data. Return appropriate status codes.
+- Validate inputs (model binding + data annotations when appropriate). Fail fast with clear errors.
+
+## Organization rules
+- **Controllers**: `CursorTest/Controllers/*Controller.cs`
+- **Services**: interfaces in `CursorTest/Services/`, implementations in the same folder.
+- **Repositories**: interfaces in `CursorTest/Repositories/`, implementations in the same folder.
+- **EF Core**:
+  - DbContext in `CursorTest/Data/`
+  - Entities in `CursorTest/Models/`
+  - Do not expose EF entities directly from API endpoints; map to DTOs.
+- **DTOs / Contracts**:
+  - Place DTOs under `CursorTest/Dtos/` (create if missing) and keep them separate from EF entities.
+
+## EF Core guidance
+- Prefer fluent configuration in `OnModelCreating` only when annotations aren’t enough.
+- Use migrations for schema changes (don’t drop/recreate DB unless explicitly requested).
+- Keep connection strings in `appsettings*.json` under `ConnectionStrings`.
+
+## Safety / quality
+- Avoid committing generated artifacts (`bin/`, `obj/`).
+- After changes, ensure the project builds (`dotnet build`) and fix any compile errors introduced.
+
